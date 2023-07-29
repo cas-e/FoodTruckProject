@@ -2,16 +2,15 @@
 
 ## Overview
 
-program does blah
-yadda yadda yadda
+program does yadda yadda yadda
 
-## Lessons Learned
-
-something
-
-# Technologies Used
+## Technologies Used
 
 - Eclipse
 - Java
 - Git
 - Github
+
+## Lessons Learned
+
+something
