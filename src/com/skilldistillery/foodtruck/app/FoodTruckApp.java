@@ -46,9 +46,11 @@ public class FoodTruckApp {
 		 */
 		foodTrucks = Arrays.copyOf(foodTrucks, numberOfTrucks);
 
+		// options menu dispatches to different processing methods like listTrucks()
 		do {
 			optionsMenu();
 		} while (!userQuitsOptionsMenu);
+
 
 		System.out.println("Thank you for using Food Truck App! Goodbye.");
 		scan.close();
