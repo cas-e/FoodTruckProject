@@ -39,7 +39,11 @@ public class FoodTruckApp {
 			return;
 		}
 
-		// enable simpler processing by truncating the array
+		/*
+		 *  Here we truncate the array to a minimal sized version.
+		 *  This property is presumed by the processing methods later in the
+		 *  code, and is required for their correctness.
+		 */
 		foodTrucks = Arrays.copyOf(foodTrucks, numberOfTrucks);
 
 		do {
@@ -127,7 +131,7 @@ public class FoodTruckApp {
 	}
 
 	/* 
-	 * Here be lambdas
+	 * Processing methods... here be lambdas
 	 */
 		
 	public void averageTrucks() {
