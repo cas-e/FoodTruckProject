@@ -12,11 +12,10 @@ public class FoodTruck {
 	public FoodTruck(String n, String t, int r) {
 		name = n;
 		type = t;
-		rating = r; // do not instantiate without accompaniment by an adult
+		rating = r;
 		id = nextTruckId;
 		nextTruckId++;
 	}
-	
 	
 	public int getRating() {
 		return rating;
@@ -25,8 +24,8 @@ public class FoodTruck {
 	@Override
 	public String toString() {
 		/*
-		 * EZ data alignment: put all constant char length data on the left of the lines,
-		 * and all variable width char length data on the right. 
+		 * EZ data alignment: put all constant length data on the left of the lines,
+		 * and all variable length data on the right. 
 		 */
 		String line1 = "Truck ID: " + id + " | Name: " + name + "\n";
 		String line2 = "Rating:   " + rating + " | Type: " + type + "\n"; 

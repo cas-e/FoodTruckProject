@@ -9,7 +9,7 @@ import com.skilldistillery.foodtruck.entities.FoodTruck;
 public class FoodTruckApp {
 
 	private FoodTruck[] foodTrucks;
-	private int truckIndex;
+	private int numberOfTrucks;
 	private Scanner scan;
 	private boolean userQuitsOrMaxTrucks;
 	private boolean userQuitsOptionsMenu;
@@ -27,23 +27,20 @@ public class FoodTruckApp {
 	public void go() {
 		System.out.println("Welcome to Food Truck App!\n");
 
-		/*
-		 * When the getUserInput() loop returns, truckIndex must equal the
-		 * number of trucks entered.
-		 */
+		// the getUserInput() loop obtains values for foodTrucks and numberOfTrucks
 		do {
 			getUserInput();
 		} while (!userQuitsOrMaxTrucks);
 
 		// edge case
-		if (truckIndex == 0) {
+		if (numberOfTrucks == 0) {
 			System.out.println("Looks like you didn't have any trucks to enter today.");
 			System.out.println("Thank you for using Food Truck App! Goodbye.");
 			return;
 		}
 
 		// enable simpler processing by truncating the array
-		foodTrucks = Arrays.copyOf(foodTrucks, truckIndex);
+		foodTrucks = Arrays.copyOf(foodTrucks, numberOfTrucks);
 
 		do {
 			optionsMenu();
@@ -87,9 +84,9 @@ public class FoodTruckApp {
 		System.out.println();
 
 		// park the truck into the array
-		foodTrucks[truckIndex++] = new FoodTruck(name, type, rating);
+		foodTrucks[numberOfTrucks++] = new FoodTruck(name, type, rating);
 		
-		if (truckIndex == 5) {
+		if (numberOfTrucks == 5) {
 			// this is the last truck we can accept
 			userQuitsOrMaxTrucks = true;
 		}
@@ -132,19 +129,12 @@ public class FoodTruckApp {
 	/* 
 	 * Here be lambdas
 	 */
-	
-	// for finding both the sum and the max of truck ratings
-	public int reduceTruckRatingsWith(IntBinaryOperator f){
-	    return Arrays.stream(foodTrucks)
-	    		     .map(t -> t.getRating())
-	    		     .reduce(0, (x, y) -> f.applyAsInt(x, y));
-	}
-	
+		
 	public void averageTrucks() {
 		System.out.println("~~ The Average Food Truck Rating ~~");
 
 		int sum = reduceTruckRatingsWith((x, y) -> x + y);
-		double avg = ((double) sum) / truckIndex;
+		double avg = ((double) sum) / numberOfTrucks;
 		
 		System.out.printf("\t  ~~ %.1f stars ~~%n", avg);
 	}
@@ -162,6 +152,12 @@ public class FoodTruckApp {
 		}
 	}
 	
+	// for finding both the sum and the max of truck ratings
+	public int reduceTruckRatingsWith(IntBinaryOperator f){
+	    return Arrays.stream(foodTrucks)
+	    		     .map(t -> t.getRating())
+	    		     .reduce(0, (x, y) -> f.applyAsInt(x, y));
+	}
 	public void listTrucks() {
 		System.out.println("~~ All Entered Food Trucks ~~");
 		Arrays.stream(foodTrucks).forEach(x -> System.out.println(x));
