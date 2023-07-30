@@ -10,7 +10,7 @@ import com.skilldistillery.foodtruck.entities.FoodTruck;
 public class FoodTruckApp {
 
 	private FoodTruck[] foodTrucks; // updated in getInput loop
-	private int numberOfTrucks;		// updated in getInput loop
+	private int numberOfTrucks;     // updated in getInput loop
 	private int truckRating;        // updated in getValidRating loop
 	
 	private Scanner scan;
