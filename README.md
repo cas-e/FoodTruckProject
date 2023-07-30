@@ -35,7 +35,7 @@ Rating:   4 | Type: Taco Truck
 
 ## Lessons Learned
 
-The simple data processing tasks like "average" and "sum" over collections can be straight-forwardly calculated using Java 8's lambdas and streams. The code in this project uses:
+Tasks like "average" and "sum" over collections can be straight-forwardly calculated using Java 8's lambdas and streams. The code in this project uses:
 
 ~~~
 public int topRating(FoodTruck[] trucks) {
@@ -57,9 +57,9 @@ public int mapReduceWith(FoodTruck[] trucks, IntBinaryOperator op){
 What's interesting about Java's lambdas, is that their types don't work like I expected they might. The usual typing rules for lambda terms look something like this:
 
 ~~~
-theTerm = λ (int x) { λ (int y) { x + y }}
+whenTheTermIs = λ (int x) { λ (int y) { x + y }}
 
-theType = int ⟶ (int ⟶ int)
+thenTheTypeIs = int ⟶ (int ⟶ int)
 ~~~
 
 Instead, a lambda term in Java is typed with a "good old fashion Java interface". For example, the IntBinaryOperator interface has a definition akin to:
@@ -69,6 +69,8 @@ public interface IntBinaryOperator {
     public int op(int a, int b);
 }
  ~~~
+
+ Which then needs a correspond method to invoke it, such as IntBinaryOperator's `applyAsInt`.
 
  In all honesty, it was a stumbling block for me to learn the "interface way" to do things. And I wondered, "Why is it like this? Why didn't they just add the usual lambda typing rules to Java when they added lambda?"
 
