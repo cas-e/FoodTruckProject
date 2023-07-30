@@ -70,7 +70,7 @@ public interface IntBinaryOperator {
 }
  ~~~
 
- Which then needs a correspond method to invoke it, such as IntBinaryOperator's `applyAsInt`.
+ Which then needs a corresponding method to invoke it, such as IntBinaryOperator's `applyAsInt`.
 
  In all honesty, it was a stumbling block for me to learn the "interface way" to do things. And I wondered, "Why is it like this? Why didn't they just add the usual lambda typing rules to Java when they added lambda?"
 
