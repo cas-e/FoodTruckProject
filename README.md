@@ -79,10 +79,8 @@ public interface IntBinaryOperator {
 > We could teach the VM about function types, but this would be a huge effort. It would effect signatures. It would effect bytecodes. It would effect verification rules. \[...\] The takeaway point is: "Just add function types" was obvious... and wrong. It would have been complex. It would have introduced corner cases. It would have exposed users to more of the pain of erasure, which isn't nice. It also would have had the effect of completely bifurcating the world of Java libraries. \[...\] We don't want to create this split between old and new libraries. By using an old mechanism \[interfaces\], we avoid that problem. And as a bonus, existing libraries that were designed years before lambda, all of a sudden are compatible with lambda as long as they are using this pattern...
 
 
-
 So, what did I learn? 
 
 I learned some things about how to utilize lambdas in Java, sure. But I feel the bigger lesson is that language design decisions that seem strange at first, probably have very good reasons for existing. It just takes a little time and research to find out why.
-
 
 
