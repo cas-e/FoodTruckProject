@@ -17,7 +17,6 @@ public class FoodTruckApp {
 	
 	private final boolean keepLooping = true;  // help to remember signals in looper methods
 	private final boolean doneLooping = false;
-
 	
 	public static void main(String[] args) {
 		FoodTruckApp app = new FoodTruckApp();
@@ -33,7 +32,7 @@ public class FoodTruckApp {
 		System.out.println("Welcome to Food Truck App!\n");
 
 		userLoop(this::getInput);
-
+		
 		if (numberOfTrucks == 0) { // edge case
 			System.out.println("Looks like you didn't have any trucks to enter today.");
 			System.out.println("Thank you for using Food Truck App! Goodbye.");
@@ -41,7 +40,6 @@ public class FoodTruckApp {
 		}
 		
 		// this array truncation is assumed by the processing methods later
-		// it is essential for the correctness of those methods
 		foodTrucks = Arrays.copyOf(foodTrucks, numberOfTrucks);
 
 		userLoop(this::doMenu);
@@ -50,14 +48,13 @@ public class FoodTruckApp {
 		scan.close();
 	}
 	
-
-
+	
 	/*
 	 * getInput, getValidRating, and doMenu are all looper methods.
-	 * They return either doneLooping or keepLooping to the userLoop factory
+	 * They return either doneLooping or keepLooping to the userLoop method
 	 */
 	
-	// factory for making looping constructs
+	// all user-interaction loops here are the same, so make an abstraction for that:
 	private void userLoop(BooleanSupplier looper) {
 		boolean moreLoops;
 		do {
@@ -76,17 +73,15 @@ public class FoodTruckApp {
 		System.out.print("Please enter the food type for this food truck: ");
 		String type = scan.nextLine();
 
+		userLoop(this::getValidRating); // we only accept 1 thru 5 star integral ratings
 		
-		userLoop(this::getValidRating); // we only accept 1 thru 5 star ratings
-		
-		System.out.println();           // make some space between entries
-
 		foodTrucks[numberOfTrucks++] = new FoodTruck(name, type, truckRating); 
 		
 		if (numberOfTrucks == 5) {
-			System.out.println("Looks like our food truck storage space is full.");
+			System.out.println("\nLooks like our food truck storage space is full.");
 			return doneLooping;
 		}
+		System.out.println();           // make some space between entries
 		
 		return keepLooping;
 	}
@@ -96,7 +91,7 @@ public class FoodTruckApp {
 		System.out.print("Was it 1, 2, 3, 4, or 5 stars? ");
 
 		truckRating = scan.nextInt();
-		scan.nextLine();              // flush
+		scan.nextLine(); // flush
 
 		boolean ratingOK = (truckRating >= 1) && (truckRating <= 5);
 		if (!ratingOK) {
@@ -114,7 +109,7 @@ public class FoodTruckApp {
 		System.out.println("4) Quit the Program");
 
 		int answer = scan.nextInt();
-		scan.nextLine();             // flush
+		scan.nextLine(); // flush
 		
 		switch (answer) {
 		case 1:
@@ -134,7 +129,7 @@ public class FoodTruckApp {
 		return keepLooping;
 	}
 
-
+	
 	/*
 	 * Data processing and display methods
 	 */
@@ -172,6 +167,4 @@ public class FoodTruckApp {
 	    		     .map(truck -> truck.getRating())
 	    		     .reduce(0, (x, y) -> f.applyAsInt(x, y));
 	}
-	
-
 }

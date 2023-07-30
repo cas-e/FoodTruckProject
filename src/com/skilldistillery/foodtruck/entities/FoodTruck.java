@@ -23,10 +23,9 @@ public class FoodTruck {
 
 	@Override
 	public String toString() {
-		/*
-		 * EZ data alignment: put all constant length data on the left of the lines,
-		 * and all variable length data on the right. 
-		 */
+
+		// EZ data alignment: put all constant length data on the left of the lines,
+		// and all variable length data on the right. 
 		String line1 = "Truck ID: " + id + " | Name: " + name + "\n";
 		String line2 = "Rating:   " + rating + " | Type: " + type + "\n"; 
 		return line1 + line2;
